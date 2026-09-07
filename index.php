@@ -7,7 +7,11 @@ $angkaRahasia = rand(1, 100);
 if (isset($_POST['tebakan'])) {
     $tebakan = $_POST['tebakan'];
 
-    echo "<p>Tebakan kamu: $tebakan</p>";
+    if ($tebakan == $angkaRahasia) {
+        echo "<p>Benar! Kamu berhasil menebak angka.</p>";
+    } else {
+        echo "<p>Salah! Coba lagi.</p>";
+    }
 }
 
 ?>
