@@ -1,16 +1,25 @@
 <?php
 
+session_start();
+
 echo "<h1>Game Tebak Angka</h1>";
 
-$angkaRahasia = rand(1, 100);
+if (!isset($_SESSION['angkaRahasia'])) {
+    $_SESSION['angkaRahasia'] = rand(1, 100);
+}
+
+$angkaRahasia = $_SESSION['angkaRahasia'];
 
 if (isset($_POST['tebakan'])) {
+
     $tebakan = $_POST['tebakan'];
 
     if ($tebakan == $angkaRahasia) {
-        echo "<p>Benar! Kamu berhasil menebak angka.</p>";
+        echo "<p>🎉 Benar! Kamu berhasil menebak angka.</p>";
+    } elseif ($tebakan < $angkaRahasia) {
+        echo "<p>⬆️ Terlalu kecil! Coba angka yang lebih besar.</p>";
     } else {
-        echo "<p>Salah! Coba lagi.</p>";
+        echo "<p>⬇️ Terlalu besar! Coba angka yang lebih kecil.</p>";
     }
 }
 
